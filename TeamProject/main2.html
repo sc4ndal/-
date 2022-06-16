@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>main index</title>
+    <script src="./jquery-3.6.0.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bree+Serif&family=Gowun+Batang&family=Lato&family=M+PLUS+Rounded+1c&family=Noto+Serif+KR:wght@300;600;700&family=Open+Sans:wght@300&family=Poppins:wght@400;700&family=Secular+One&family=Source+Sans+Pro:wght@300&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+</head>
+<!-- 팝업창 생성 함수 : left랑 top을 조절로 화면 중간에서 팝업 생성 -->
+<script>
+
+function createPopupWin(pageURL, pageTitle
+        ,popupWinWidth, popupWinHeight
+        ) {
+	
+	var left = (screen.width - popupWinWidth) / 2;
+    var top = (screen.height - popupWinHeight) / 4;
+	var myWindow = window.open(pageURL, pageTitle,
+        'resizable=no, location=no, width=' + popupWinWidth
+        + ', height=' + popupWinHeight + ', top='
+        + top + ', left=' + left).window;
+}
+</script>
+<!-------------------------------------------------------------------------->
+<style>
+    body{
+        /* -webkit-filter: blur(5px); /* Safari 6.0 - 9.0 */
+        /* background-filter: blur(5px); */ 
+        margin: 0; 
+        padding: 0;
+        padding-top: 0;
+        box-sizing: border-box;
+        font-family: 'Noto Serif KR', serif;
+        background: linear-gradient(white, rgb(251, 238, 167), rgb(255, 247, 216));
+    }
+	#header {
+        width: 100%; 
+        height:150px; 
+        line-height: 100px; 
+        font-size: 30px; 
+        color:rgb(0, 0, 0); 
+        background: white;   
+        text-align: left;
+        /* border-left: 40px solid snow; */
+        font-family: 'Ubuntu', sans-serif;
+    }
+	#lnb.fixed {
+        position: fixed; 
+        left: 0; 
+        top: 0; 
+        width: 100%;
+    }
+	#lnb ul {
+        font-size:0; 
+        line-height: 0; 
+        background: rgb(240, 205, 140);
+    }
+	#lnb li {
+        display: inline-block; 
+        vertical-align: top; 
+        width: 20%; 
+        padding: 20px 0; 
+        font-size: 12px; 
+        text-align: center;
+        font-family: 'Source Sans Pro', sans-serif;
+    }
+	.container {
+        /* width:100%;  */
+        font-size: 30px; 
+        background: whitesmoke; 
+        text-align: center;
+        padding-left: 1;
+        position: relative;
+        width: 50%;
+        padding-left: 300px;
+    } 
+    .mySlides {
+        display: none;
+    }
+    
+
+    /* Slideshow container */
+    .slideshow-container {
+        max-width: 1000px;
+        position: relative;
+        margin: auto;
+    }
+
+    /* Caption text */
+    .text {
+        color: #f2f2f2;
+        font-size: 15px;
+        padding: 8px 12px;
+        position: absolute;
+        bottom: 8px;
+        width: 100%;
+        text-align: center;
+    }
+
+    /* Number text (1/3 etc) */
+    .numbertext {
+        color: #f2f2f2;
+        font-size: 12px;
+        padding: 8px 12px;
+        position: absolute;
+        top: 0;
+    }
+
+    /* The dots/bullets/indicators */
+    .dot {
+        height: 10px;
+        width: 10px;
+        margin: 0 2px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.6s ease;
+    }
+
+    .active {
+        background-color: #717171;
+    }
+
+    /* Fading animation */
+    .fade {
+        animation-name: fade;
+        animation-duration: 3.0s;
+    }
+
+    @keyframes fade {
+        from {opacity: .4} 
+        to {opacity: 1}
+    } 
+    #pText{
+        text-align: right;
+        font-family: Verdana, Geneva, Tahoma, sans-serif;
+        font: bold;
+
+    } 
+    #footer{
+        text-align: center;
+        background-color: rgb(236, 236, 236);
+        font-size: small;
+        padding-top: 10px;
+        padding-bottom: 10px;
+        float: center;
+    }
+
+    #button{
+        float: right;
+        
+    }
+    #section{
+        text-align: center;
+        background-image : url('shop.jpg');
+        padding-top: 50px;
+        padding-bottom: 50px;
+        float: center;
+       
+        
+    }
+    #img_bx wow fadeInUp{
+        float: right;   
+    }
+    #article {
+        font-size: 30px;
+        padding-left: 13px;
+        text-align: center;
+    }
+    #pic1{
+        float: middle;
+    }
+    #pic2{
+        float: middle;
+    } 
+
+    
+    
+
+    #pics{
+        background-image : url('back4.jpg');
+        background-size: contain;
+        position: relative;
+        transition: .5s ease;
+    }
+
+    .text2{
+        position: absolute;
+    }
+
+    .image {
+        display: block;
+        width: 100%;
+        height: auto;
+        
+        }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 100%;
+        right: 0%;
+        background-color: #d9cfb5;
+        overflow: hidden;
+        width: 0;
+        height: 100%;
+        transition: .5s ease;
+        
+        }
+
+    .container:hover .overlay {
+    width: 100%;
+    left: 0;
+    } 
+
+    .text {
+    color: black;
+    font-size: 20px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    white-space: nowrap;
+    }
+</style>
+<script>
+    $(function() {
+	    var lnb = $("#lnb").offset().top;
+		$(window).scroll(function() {
+			var window = $(this).scrollTop();
+
+				if(lnb <= window) {
+					$("#lnb").addClass("fixed");
+				} else {
+					$("#lnb").removeClass("fixed");
+				}
+			})
+	    });
+</script>
+<body>
+    <button id="button" onClick="location.href='main.html'">logout</button> 
+    <button id="button" onclick="createPopupWin('edit.html','회원정보수정',750,650)">edit</button>
+    <!--header start-->
+    <div id="header">
+        <p>THE COM MID CAFE</p>
+    </div>
+    <div id="lnb">
+        <ul id="main-menu">
+            <li onClick="location.href='menu.html'"><strong>MENU</strong></li>
+            <li onClick="location.href='soge.html'"><strong>STORE</strong></li>
+            <li onClick="location.href='board.html'"><strong>BOARD</strong></li>
+            <li onClick="location.href='qna.html'"><strong>QnA</strong></li>
+            <li onClick="location.href='notice.html'"><strong>NOTICE</strong></li>  
+        </ul>
+    </div>
+
+    <!--from here starts to see the banner moving!!!-->
+    
+    <div id="move">
+        <div class="slideshow-container">
+            <div class="mySlides fade">
+              <div class="numbertext">1 / 3</div>
+              <img src="http://theventi.co.kr/new/upload/banner/30927906_JQHRrz8m_20220427094802.png" style="width:100%">
+            </div>
+            
+            <div class="mySlides fade">
+              <div class="numbertext">2 / 3</div>
+              <img src="http://theventi.co.kr/new/upload/banner/30927906_jtnri1fv_20220405052342.png" style="width:100%">   
+            </div>
+            
+            <div class="mySlides fade">
+              <div class="numbertext">3 / 3</div>
+              <img src="http://theventi.co.kr/new/upload/banner/30927906_QD0WGPcy_20210429105621.png" style="width:100%"> 
+            </div>
+            
+        </div>
+        <br>
+        <div style="text-align:center">
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+            <span class="dot"></span> 
+        </div>
+    </div>
+    
+    
+    <!-- from here starts to show images and texts -->
+    <div id="pics">
+        <section id="article">
+            <img src="beans.jpg" id="pic1">
+            <p>"더 깊은 맛을 내는 원두를 쓰니까"<br><small>오직 저희 가게에서만 맛볼 수 있는 특별한 원두로
+                더욱 경쟁력 있는 음료만을 선보입니다</p>
+                <button>자세히보기</button>
+            <br><br>
+            <img src="coffee.jpg" id="pic2">
+            <p>"모두가 즐길 수 있는 커피를 위해!"<br><small>산미,향미,맛,질감 여러분이 원하는 그 모든것을 충족해 줄 수 있는 커피입니다</small></p>
+            <button>자세히보기</button>
+            <br><br>
+            <img src="bread.jpg" id="pic1">
+            <p>"향긋한 빵의 향기로 아침을 시작해 보세요"<br><small>힘든 아침의 일과는 잠시 잊고 맛있는 빵과 샌드위치로 가뿐한 아침을 즐기세요</small></p>
+            <button>자세히보기</button>
+        </section>
+    </div>   
+    <br><br><br>
+    <section id="section">
+        <article>
+            저희 카페를 <strong>가까이에서 경험</strong>해보세요!<br><br>
+            <small>차별화된 커피 경험을 누릴 수 있는 <strong>리저브 매장</strong></small><br>
+            <small>다양한 방법으로 편리하게 즐길 수 있는 <strong>드라이브 스루 매장</strong></small><br>
+            <small>함께해서 더 따뜻할 수 있는 지역사회 소통 공간 <strong>커뮤니티 매장</strong></small><br>
+            <br><button onClick="location.href='findplace.html'">매장 찾기</button>
+        </article>
+    </section>
+    <!--footerrrrrrrrrrrrrrrrr-->
+    <br>
+    <footer id="footer">
+        <p><br>더벤티코리아 부산 부산광역시 해운대구 센텀서로 30, 2507호 (KNN타워)<br>
+            더벤티코리아 서울 서울특별시 구로구 디지털로33길 27 408~414호<br>
+            (주)에스앤씨세인 사업자번호 : 534-88-00122 대표이사 : 박수암 강삼남 최준경<br>
+            가맹문의 1661-4553 고객센터 1644-0513<br>
+            회사소개 가맹절차 사이트이용약관 개인정보 처리방침 고객상담 사이트맵<br>
+            Copyright ⓒ THEVENTI. All right Reserved.<br>
+        </p>
+    </footer>
+
+    <!--사진 움직이는 스크립트, body안에 넣지 않으면 적용 안되더라-->
+    <script>
+        let slideIndex = 0;
+        showSlides();
+
+        function showSlides() {
+        let i;
+        let slides = document.getElementsByClassName("mySlides");
+        let dots = document.getElementsByClassName("dot");
+        for (i = 0; i < slides.length; i++) {
+            slides[i].style.display = "none";  
+        }
+        slideIndex++;
+        if (slideIndex > slides.length) {slideIndex = 1}    
+        for (i = 0; i < dots.length; i++) {
+            dots[i].className = dots[i].className.replace(" active", "");
+        }
+        slides[slideIndex-1].style.display = "block";  
+        dots[slideIndex-1].className += " active";
+        setTimeout(showSlides, 3000); // 3초마다 이미지 슬라이딩
+        }
+
+
+        function debounce(func, wait = 20, immediate = true) {
+        var timeout;
+        return function () {
+            var context = this,
+            args = arguments;
+            var later = function () {
+            timeout = null;
+            if (!immediate) func.apply(context, args);
+            };
+            var callNow = immediate && !timeout;
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+            if (callNow) func.apply(context, args);
+        };
+        }
+
+        const sliderImages = document.querySelectorAll(".slide-in");
+
+        function checkSlide() {
+        sliderImages.forEach((sliderImage) => {
+            // 뷰포트 최상단 기준
+            const imageHalf = window.scrollY + window.innerHeight;
+            const isViewBottomPast =
+            imageHalf > sliderImage.offsetTop + sliderImage.height / 2;
+            // 뷰포트 최하단 기준
+            const imageBottom = sliderImage.offsetTop + sliderImage.height;
+            const isViewTopPast = window.scrollY < imageBottom;
+            if (isViewBottomPast && isViewTopPast) {
+            sliderImage.classList.add("active");
+            } else {
+            sliderImage.classList.remove("active");
+            }
+        });
+        }
+
+        window.addEventListener("scroll", debounce(checkSlide));
+    </script>     
+</body>
+</html>

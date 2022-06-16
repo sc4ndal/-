@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="AC.css">
+<script type="text/javascript">
+function onlyKorean(inputId) {
+	var str=document.getElementById(inputId).value;
+	for (i = -1; i < str.length; i++) {
+		if (!((str.charCodeAt(i) > 0x3130 && str.charCodeAt(i) < 0x318F) || (str.charCodeAt(i) >= 0xAC00 && str.charCodeAt(i) <= 0xD7A3))) {
+
+			alert("한글만 입력해 주세요");
+			document.getElementById(inputId).value=null; } }
+
+
+	}
+
+
+var today = new Date();
+var day = today.getDate();
+var month = today.getMonth() + 1; //January is 0!
+var year = today.getFullYear();
+
+if (day < 10) {
+   day = '0' + day;
+}
+
+if (month < 10) {
+   month = '0' + month;
+} 
+    
+today = year + '-' + month + '-' + day;
+document.getElementById("dateId").setAttribute("max",today
+		);
+
+
+
+function test() {
+  var p1 = document.getElementById('ps1').value;
+  var p2 = document.getElementById('ps2').value;
+
+  if( p1 != p2 ) {
+    alert("비밀번호가 일치 하지 않습니다");
+    return false;
+  } else{
+    window.close();
+    return true;
+  }
+
+}
+
+</script>
+
+<title>회원정보수정</title>
+</head>
+<body>
+<div class="register">
+        <h3>회원정보수정</h3>
+        <form action="">
+            <div class="flex">
+                <ul class="container">
+                    <li class="item center">
+                        이름 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="text" class="name" name="name" id="inputkorean" onkeypress="javascript:return onlyKorean('inputkorean');" values="" placeholder="이름을 입력하세요" autofocus required>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        아이디 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="text" pattern="[A-Za-z]+" placeholder="" minlength="4" maxlength="16" disabled="disabled" required>
+                    </li>
+                    <!-- 
+                    <li class="item">
+                        <button class="idcheck">중복확인</button>
+                    </li>
+                     -->
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        닉네임 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="text" class="name" name="nickname" id="inputkorean" values="" placeholder="닉네임을 입력하세요" required>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        비밀번호 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="password" id="ps1" pattern="[A-Za-z]+" placeholder="영소문자 4자~16자" minlength="4" maxlength="16" required>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        비밀번호 확인 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="password" id="ps2" pattern="[A-Za-z]+" placeholder="영소문자  4자~16자" minlength="4" maxlength="16" required>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <!-- 
+                <ul class="container">
+                    <li class="item center">
+                        생년월일 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="date" id="dateId" min="1950-06-25" required>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                 -->
+                <!--  
+                <ul class="container">
+                    <li class="item center">
+                       
+                        성별 
+                    </li>
+						<li style="font-size: 14px;vertical-align: middle;">
+						남 성&nbsp&nbsp&nbsp<label><input type="radio" style="width:20px;height:20px;border:1;vertical-align: middle;" name="gender" value="male"></label>
+						여 성&nbsp&nbsp&nbsp<label><input type="radio" style="width:20px;height:20px;border:1;vertical-align: middle;" name="gender" value="female"></labal>
+						</li>
+						
+						<li class="item"></li>
+                </ul>
+                  -->
+                <ul class="container">
+                    <li class="item center">
+                        전화번호 <img src="http://img.echosting.cafe24.com/skin/base/common/ico_required.gif" alt="필수"/>
+                    </li>
+                    <li class="item">
+                        <input type="tel" placeholder="-빼고 입력해주세요." minlength="11" maxlength="11" pattern="[0-9]+" required="required">
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        이메일 
+                    </li>
+                    <li class="item">
+                        <input type="email" placeholder="이메일을 입력해주세요.">
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                <ul class="container">
+                    <li class="item center">
+                        
+                    </li>
+                    <li class="item">
+                        <button class="submit" onclick="self.close()">수정하기</button>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                
+                <ul class="container">
+                    <li class="item center">
+                        
+                    </li>
+                    <li class="item">
+                        <button class="submit" onclick="self.close()">탈퇴하기</button>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                
+                <ul class="container">
+                    <li class="item center">
+                        
+                    </li>
+                    <li class="item">
+                        <button class="submit" onclick="self.close()">돌아가기</button>
+                    </li>
+                    <li class="item">
+                        
+                    </li>
+                </ul>
+                
+            </div>
+        </form>
+    </div>
+</body>
+</html>
